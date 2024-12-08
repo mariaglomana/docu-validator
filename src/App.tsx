@@ -1,14 +1,11 @@
-import { Typography, Button } from '@mui/material'
+import { Button } from '@mui/material'
 
-import docuLogo from '/document.svg'
+import { Header } from './components'
 
 const App = () => {
   return (
     <>
-      <div>
-        <img src={docuLogo} className='logo' alt='Docu Validator logo' />
-        <Typography variant='h1'>Docu Validator</Typography>
-      </div>
+      <Header />
       <Button variant='contained'>Empezar</Button>
     </>
   )
