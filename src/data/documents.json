@@ -1,0 +1,37 @@
+{
+  "documents": [
+    {
+      "name": "Documento de prueba 1",
+      "update_date": "2024-12-01T19:03:50.440Z",
+      "id": 0,
+      "author": "pedro.flores@gmail.com",
+      "status": "pending",
+      "type": "PDF",
+      "size": 0,
+      "referred": ["marta.lopez@gmail.com", "marc.aguado@gmail.com"],
+      "keywords": ["admin", "urgente"]
+    },
+    {
+      "name": "Documento de prueba 2",
+      "update_date": "2024-12-04T19:03:50.440Z",
+      "id": 0,
+      "author": "pedro.flores@gmail.com",
+      "status": "approved",
+      "type": "PDF",
+      "size": 0,
+      "referred": ["marta.lopez@gmail.com", "marc.aguado@gmail.com"],
+      "keywords": ["propuesta"]
+    },
+    {
+      "name": "Documento de prueba 3",
+      "update_date": "2024-12-06T19:03:50.440Z",
+      "id": 0,
+      "author": "pedro.flores@gmail.com",
+      "status": "rejected",
+      "type": "PDF",
+      "size": 0,
+      "referred": ["marta.lopez@gmail.com", "marc.aguado@gmail.com"],
+      "keywords": ["desarrollo", "firma", "en proceso"]
+    }
+  ]
+}
