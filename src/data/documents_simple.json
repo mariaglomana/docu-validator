@@ -1,0 +1,25 @@
+{
+  "documents": [
+    {
+      "name": "Documento de prueba 1",
+      "update_date": "2024-12-01T19:03:50.440Z",
+      "id": 0,
+      "author": "pedro.flores@gmail.com",
+      "status": "pending"
+    },
+    {
+      "name": "Documento de prueba 2",
+      "update_date": "2024-12-04T19:03:50.440Z",
+      "id": 0,
+      "author": "pedro.flores@gmail.com",
+      "status": "approved"
+    },
+    {
+      "name": "Documento de prueba 3",
+      "update_date": "2024-12-06T19:03:50.440Z",
+      "id": 0,
+      "author": "pedro.flores@gmail.com",
+      "status": "rejected"
+    }
+  ]
+}

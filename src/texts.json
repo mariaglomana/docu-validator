@@ -1,0 +1,15 @@
+{
+  "documents": "Documentos",
+  "loadedDocuments": "Documentos cargados",
+  "name": "Nombre",
+  "updateDate": "Fecha",
+  "author": "Autor",
+  "status": "Estatus",
+  "type": "Tipo",
+  "size": "Tamaño",
+  "referred": "Referidos",
+  "ariaLabelNextPage": "Ir a la página anterior",
+  "ariaLabelPreviousPage": "Ir a la página siguiente",
+  "rowsPerPage": "Filas por página",
+  "error": "Se ha producido un error"
+}
