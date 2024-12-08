@@ -21,5 +21,9 @@
   "cancel": "Cancelar",
   "selectedFile": "Archivo seleccionado",
   "uploadFile": "Subir archivo",
-  "deleteFile": "Borrar archivo"
+  "deleteFile": "Borrar archivo",
+  "recipientEmail": "Correo del destinatario",
+  "referredDescription": "Añade a continuación el correo de los destinatarios de tu documento",
+  "addReferrer": "Añadir destinatario",
+  "recipients": "Destinatarios"
 }

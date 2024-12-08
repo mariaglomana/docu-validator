@@ -9,12 +9,17 @@ import {
 } from '@mui/material'
 import useNewDocumentForm from './useNewDocumentForm'
 import FileUploaderInput from './FileUploaderInput'
+import ReferredGroup from './ReferredGroup'
 
 const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 2,
+    gap: 5,
+    '& label.groupLabel': {
+      fontWeight: 'bold',
+      fontSize: '1.25rem',
+    },
   },
   authorGroup: {
     display: 'flex',
@@ -24,6 +29,7 @@ const styles = {
   submitBtn: {
     width: 'var(--button-max-width)',
     mt: 2,
+    alignSelf: 'flex-end',
   },
 }
 const AddDocument = () => {
@@ -42,9 +48,9 @@ const AddDocument = () => {
   } = useNewDocumentForm(submitFormFn, onSubmitSuccess)
 
   return (
-    <Box component='form' sx={styles.root}>
+    <Box component='form' sx={styles.root} id='newDocumentForm'>
       <Box sx={styles.authorGroup}>
-        <FormLabel component='legend'>{texts.author}</FormLabel>
+        <FormLabel className='groupLabel'>{texts.author}</FormLabel>
         <TextField
           id='authorName'
           label={texts.name}
@@ -79,8 +85,21 @@ const AddDocument = () => {
           </FormHelperText>
         )}
       </Box>
+      <ReferredGroup
+        referred={formValues.referred}
+        addReferrer={(email) =>
+          updateFieldForm('referred', [...formValues.referred, email])
+        }
+        removeReferrer={(emailIndex) =>
+          updateFieldForm(
+            'referred',
+            formValues.referred.filter((email) => email !== emailIndex),
+          )
+        }
+      />
 
       <Button
+        form='newDocumentForm'
         onClick={submitForm}
         disabled={isSubmitting}
         sx={styles.submitBtn}
