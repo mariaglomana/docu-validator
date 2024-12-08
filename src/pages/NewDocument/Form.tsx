@@ -1,22 +1,29 @@
+import React from 'react'
 import texts from '../../texts.json'
-import { Box, TextField, Button, FormLabel } from '@mui/material'
+import {
+  Box,
+  TextField,
+  Button,
+  FormLabel,
+  FormHelperText,
+} from '@mui/material'
 import useNewDocumentForm from './useNewDocumentForm'
+import FileUploaderInput from './FileUploaderInput'
 
 const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
     gap: 2,
-
-    '& button': {
-      width: 'var(--button-max-width)',
-      mt: 2,
-    },
   },
   authorGroup: {
     display: 'flex',
     flexDirection: 'column',
     gap: 1.5,
+  },
+  submitBtn: {
+    width: 'var(--button-max-width)',
+    mt: 2,
   },
 }
 const AddDocument = () => {
@@ -61,7 +68,23 @@ const AddDocument = () => {
           helperText={fieldErrors.authorEmail}
         />
       </Box>
-      <Button onClick={submitForm} disabled={isSubmitting}>
+      <Box>
+        <FileUploaderInput
+          selectedFile={formValues.document}
+          setSelectedFile={(file) => updateFieldForm('document', file)}
+        />
+        {!!fieldErrors.document && (
+          <FormHelperText error={true}>
+            {texts.errorFieldFileMandatory}
+          </FormHelperText>
+        )}
+      </Box>
+
+      <Button
+        onClick={submitForm}
+        disabled={isSubmitting}
+        sx={styles.submitBtn}
+      >
         {texts.save}
       </Button>
     </Box>

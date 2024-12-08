@@ -20,7 +20,7 @@ const hasFieldErrors = (fieldErrors) =>
 interface IDocumentValues {
   authorName: string
   authorEmail: string
-  // document: File | null
+  document: File | null
   referred: string[]
 }
 
@@ -34,7 +34,7 @@ interface IFormState {
 const DEFAULT_FORM_VALUES = {
   authorName: '',
   authorEmail: '',
-  // document: null,
+  document: null,
   referred: [],
 }
 
@@ -83,7 +83,13 @@ const useNewDocumentForm = (
     }
   }
 
+  const resetErrors = () => {
+    setFormError(undefined)
+    setFieldErrors({})
+  }
+
   const updateFieldForm = (fieldName, fieldValue) => {
+    resetErrors()
     setFormValues((values) => ({
       ...values,
       [fieldName]: fieldValue,

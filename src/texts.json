@@ -16,5 +16,10 @@
   "goBack": "volver",
   "errorFieldRequired": "Campo requerido",
   "errorFieldInvalidEmail": "Correo inválido",
-  "save": "Guardar"
+  "errorFieldFileMandatory": "Es necesario seleccionar un archivo",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "selectedFile": "Archivo seleccionado",
+  "uploadFile": "Subir archivo",
+  "deleteFile": "Borrar archivo"
 }
