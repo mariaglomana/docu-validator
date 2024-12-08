@@ -11,5 +11,7 @@
   "ariaLabelNextPage": "Ir a la página anterior",
   "ariaLabelPreviousPage": "Ir a la página siguiente",
   "rowsPerPage": "Filas por página",
-  "error": "Se ha producido un error"
+  "error": "Se ha producido un error",
+  "addDocument": "Añadir documento",
+  "goBack": "volver"
 }

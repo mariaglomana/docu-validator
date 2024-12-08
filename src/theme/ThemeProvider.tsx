@@ -12,7 +12,13 @@ const theme = createTheme(
     breakpoints,
     palette: { primary: { main: '#551a8b' }, secondary: { main: '#343434' } },
   },
-  { components: { MuiCssBaseline: CustomCSSBaseline, MuiButtonBase } },
+  {
+    components: {
+      MuiCssBaseline: CustomCSSBaseline,
+      MuiButtonBase,
+      MuiButton: { defaultProps: { variant: 'contained' } },
+    },
+  },
 )
 
 const ThemeProvider = ({ children }: { children?: ReactNode }) => {

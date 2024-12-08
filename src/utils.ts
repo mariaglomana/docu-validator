@@ -23,3 +23,7 @@ export const formatLongDate = (dateStr: string) =>
     day: '2-digit',
     year: 'numeric',
   })
+
+export const navigateTo = (path: string) => {
+  window.history.pushState({}, '', path)
+}
