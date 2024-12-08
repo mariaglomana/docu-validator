@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Home, AddDocument, Error } from './pages'
+import { Home, NewDocument, Error } from './pages'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname)
@@ -47,7 +47,7 @@ const App = () => {
   return (
     <>
       {currentPath === '/new-document' ? (
-        <AddDocument />
+        <NewDocument />
       ) : currentPath === '/' ? (
         <Home />
       ) : (

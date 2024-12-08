@@ -13,5 +13,8 @@
   "rowsPerPage": "Filas por página",
   "error": "Se ha producido un error",
   "addDocument": "Añadir documento",
-  "goBack": "volver"
+  "goBack": "volver",
+  "errorFieldRequired": "Campo requerido",
+  "errorFieldInvalidEmail": "Correo inválido",
+  "save": "Guardar"
 }
