@@ -1,4 +1,5 @@
 import { IDocument } from './pages/Home/types'
+import userDocumentsData from './data/documents_simple.json'
 
 const DOCUMENTS_KEY = 'documents'
 
@@ -23,4 +24,10 @@ export const updateDocument = (document: IDocument) => {
     update_date: new Date().toISOString(),
   }
   localStorage.setItem(DOCUMENTS_KEY, JSON.stringify(storedDocuments))
+}
+
+export const populateExampleDocuments = () => {
+  if (getDocuments()?.length === 0) {
+    ;(userDocumentsData.documents as IDocument[]).forEach(saveDocument)
+  }
 }

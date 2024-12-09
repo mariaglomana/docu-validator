@@ -3,21 +3,21 @@
     {
       "name": "Documento de prueba 1",
       "update_date": "2024-12-01T19:03:50.440Z",
-      "id": 0,
+      "id": "c050ca52-4079-4e6f-92ce-b84f87286b9d",
       "author": "pedro.flores@gmail.com",
       "status": "pending"
     },
     {
       "name": "Documento de prueba 2",
       "update_date": "2024-12-04T19:03:50.440Z",
-      "id": 0,
+      "id": "3f86fb91-403d-43a3-9adb-1ec69a6791ea",
       "author": "pedro.flores@gmail.com",
       "status": "approved"
     },
     {
       "name": "Documento de prueba 3",
       "update_date": "2024-12-06T19:03:50.440Z",
-      "id": 0,
+      "id": "8a536b53-8901-414b-b0fc-bc1de3c1c63e",
       "author": "pedro.flores@gmail.com",
       "status": "rejected"
     }
