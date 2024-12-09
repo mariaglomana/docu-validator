@@ -1,5 +1,3 @@
-import React from 'react'
-import texts from '../../texts.json'
 import {
   Box,
   TextField,
@@ -7,9 +5,16 @@ import {
   FormLabel,
   FormHelperText,
 } from '@mui/material'
-import useNewDocumentForm from './useNewDocumentForm'
+
+import texts from '../../texts.json'
+import { UserData } from '../../types'
+import * as services from '../../services'
+import * as session from '../../session'
+import { navigateTo } from '../../utils'
+import useNewDocumentForm, { IDocumentValues } from './useNewDocumentForm'
 import FileUploaderInput from './FileUploaderInput'
 import ReferredGroup from './ReferredGroup'
+import { IDocument } from '../Home/types'
 
 const styles = {
   root: {
@@ -32,10 +37,52 @@ const styles = {
     alignSelf: 'flex-end',
   },
 }
+
+const getFormInitialValues = () => {
+  const userData = session.getUser()
+  if (!userData) return {}
+
+  return {
+    authorEmail: userData.email,
+    authorName: userData.name,
+  }
+}
+
 const AddDocument = () => {
-  const submitFormFn = () => true
-  const onSubmitSuccess = () => {
-    alert('Success')
+  const submitFormFn = async (formValues: IDocumentValues) => {
+    if (formValues.document) {
+      const documentDataForStorage: IDocument = {
+        name: formValues.document.name,
+        update_date: new Date().toISOString(),
+        id: crypto.randomUUID(),
+        author: formValues.authorEmail,
+        status: 'pending',
+      }
+
+      const authorData: UserData = {
+        id: crypto.randomUUID(),
+        email: formValues.authorEmail,
+        name: formValues.authorName,
+      }
+      services.saveNewDocument(documentDataForStorage)
+
+      if (!session.isUserAuthenticated()) {
+        session.saveUser(authorData)
+      }
+
+      if (formValues.referred.length > 0) {
+        await services.sendNewDocumentEmails(
+          authorData,
+          formValues.document,
+          formValues.referred,
+        )
+      }
+    }
+  }
+
+  const onSubmitSuccess = (formValues: IDocumentValues) => {
+    alert(`Documento \'${formValues.document?.name}\' guardado con éxito`)
+    navigateTo('/')
   }
 
   const {
@@ -45,7 +92,7 @@ const AddDocument = () => {
     fieldErrors,
     updateFieldForm,
     submitForm,
-  } = useNewDocumentForm(submitFormFn, onSubmitSuccess)
+  } = useNewDocumentForm(submitFormFn, onSubmitSuccess, getFormInitialValues())
 
   return (
     <Box component='form' sx={styles.root} id='newDocumentForm'>
@@ -77,7 +124,7 @@ const AddDocument = () => {
       <Box>
         <FileUploaderInput
           selectedFile={formValues.document}
-          setSelectedFile={(file) => updateFieldForm('document', file)}
+          setSelectedFile={(file: File) => updateFieldForm('document', file)}
         />
         {!!fieldErrors.document && (
           <FormHelperText error={true}>
@@ -87,13 +134,13 @@ const AddDocument = () => {
       </Box>
       <ReferredGroup
         referred={formValues.referred}
-        addReferrer={(email) =>
+        addReferrer={(email: string) =>
           updateFieldForm('referred', [...formValues.referred, email])
         }
-        removeReferrer={(emailIndex) =>
+        removeReferrer={(emailToRemove: string) =>
           updateFieldForm(
             'referred',
-            formValues.referred.filter((email) => email !== emailIndex),
+            formValues.referred.filter((email) => email !== emailToRemove),
           )
         }
       />
@@ -106,6 +153,7 @@ const AddDocument = () => {
       >
         {texts.save}
       </Button>
+      {!!formError && <FormHelperText error={true}>{formError}</FormHelperText>}
     </Box>
   )
 }

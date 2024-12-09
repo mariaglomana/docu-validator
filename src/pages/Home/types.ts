@@ -5,7 +5,7 @@ export type TDocumentStatus = 'pending' | 'approved' | 'rejected'
 export interface IDocument extends TTableData {
   name: string
   update_date: string
-  id: number
+  id: string
   author: string
   status: TDocumentStatus
   // type: string

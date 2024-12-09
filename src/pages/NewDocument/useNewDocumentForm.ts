@@ -14,21 +14,14 @@ const getFieldsErrors = (formValues, formValidationConfig) => {
   return fieldErrors
 }
 
-const hasFieldErrors = (fieldErrors) =>
+const hasFieldErrors = (fieldErrors: Record<string, string>) =>
   Object.values(fieldErrors).some((value) => value !== '')
 
-interface IDocumentValues {
+export interface IDocumentValues {
   authorName: string
   authorEmail: string
   document: File | null
   referred: string[]
-}
-
-interface IFormState {
-  isSubmitting: boolean
-  formValues: IDocumentValues
-  formError: string | undefined
-  fieldErrors: Partial<Record<keyof IDocumentValues, string>>
 }
 
 const DEFAULT_FORM_VALUES = {
@@ -45,8 +38,8 @@ const FORM_VALIDATION_CONFIG = {
 }
 
 const useNewDocumentForm = (
-  submitFormFn,
-  onSubmitSuccess,
+  submitFormFn: (formValues: IDocumentValues) => Promise<void>,
+  onSubmitSuccess: (formValues: IDocumentValues) => void,
   initialValues = {},
 ) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
@@ -58,8 +51,6 @@ const useNewDocumentForm = (
   const [fieldErrors, setFieldErrors] = useState<
     Partial<Record<keyof IDocumentValues, string>>
   >({})
-
-  console.log({ formValues, formError, fieldErrors })
 
   const submitForm = async () => {
     setFormError(undefined)
@@ -74,8 +65,8 @@ const useNewDocumentForm = (
     }
 
     try {
-      const result = await submitFormFn(formValues)
-      onSubmitSuccess(result)
+      await submitFormFn(formValues)
+      onSubmitSuccess(formValues)
     } catch (error) {
       setFormError(texts.error)
     } finally {
@@ -88,7 +79,10 @@ const useNewDocumentForm = (
     setFieldErrors({})
   }
 
-  const updateFieldForm = (fieldName, fieldValue) => {
+  const updateFieldForm = (
+    fieldName: keyof IDocumentValues,
+    fieldValue: IDocumentValues[keyof IDocumentValues],
+  ) => {
     resetErrors()
     setFormValues((values) => ({
       ...values,
