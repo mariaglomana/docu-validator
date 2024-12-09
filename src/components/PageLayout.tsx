@@ -5,12 +5,25 @@ import { Header } from '.'
 import { navigateTo } from '../utils'
 
 const styles = {
-  minHeight: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  width: 'var(--container-max-width)',
-  mx: 'auto',
-  gap: 2,
+  navigation: {
+    width: 'var(--container-max-width)',
+    mx: 'auto',
+    mb: '2rem',
+  },
+
+  content: {
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'var(--content-L-max-width)',
+    mx: 'auto',
+    px: { xs: 2.5, md: 0 },
+    gap: 2,
+    '& button': {
+      width: 'var(--button-max-width)',
+      alignSelf: 'center',
+    },
+  },
 }
 
 interface PageLayoutProps {
@@ -26,19 +39,22 @@ const PageLayout = ({
 }: PageLayoutProps) => {
   return (
     <>
-      {withHeader && <Header />}
-      {withGoHomeButton && (
-        <Button
-          variant='text'
-          color='secondary'
-          sx={{ m: 2, alignSelf: 'start' }}
-          startIcon={<NavigateBeforeIcon />}
-          onClick={() => navigateTo('/')}
-        >
-          {texts.goBack}
-        </Button>
-      )}
-      <Box component='main' sx={styles}>
+      <Box sx={styles.navigation}>
+        {withHeader && <Header />}
+        {withGoHomeButton && (
+          <Button
+            variant='text'
+            color='secondary'
+            sx={{ m: 2, alignSelf: 'start' }}
+            startIcon={<NavigateBeforeIcon />}
+            onClick={() => navigateTo('/')}
+          >
+            {texts.goBack}
+          </Button>
+        )}
+      </Box>
+
+      <Box component='main' sx={styles.content}>
         {children}
       </Box>
     </>
